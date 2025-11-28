@@ -1,91 +1,93 @@
-SoulSyncAI/
+SoulSync/
 │
-├── backend_fastapi/
-│   ├── app/
-│   │   ├── __pycache__/
-│   │   ├── uploaded_audio/          
-│   │   ├── models/                  
-│   │   │   ├── emotion_model.py
-│   │   │   ├── classifier.pkl
-│   │   ├── utils/                    
-│   │   │   ├── audio_utils.py
-│   │   │   ├── text_utils.py
-│   │   │   ├── emotion_utils.py
-│   │   │   ├── response_generator.py
-│   │   ├── routes/                   
-│   │   │   ├── emotion_routes.py
-│   │   │   ├── support_routes.py
-│   │   │   ├── ai_routes.py          # Main LLM/Emotion Chat Endpoint
-│   │   ├── main.py
-│   │   ├── function.py               
-│   │   ├── nltk_setup.py
-│   │   └── test.py
+├── frontend/
+│   ├── pages/
+│   │   ├── landing.html              ← Your clean landing page (like screenshot)
+│   │   ├── index.html                ← Chat UI
+│   │   ├── login.html
+│   │   ├── signup.html
+│   │   ├── history.html
+│   │   └── settings.html
 │   │
-│   ├── requirements.txt
+│   ├── components/
+│   │   ├── navbar.html
+│   │   ├── sidebar.html
+│   │   └── chat-bubble.html
+│   │
+│   ├── styles/
+│   │   ├── main.css                  ← Dual-theme CSS
+│   │   └── landing.css               ← (Optional) For landing-specific styling
+│   │
+│   ├── scripts/
+│   │   ├── app.js                    ← Chat UI logic
+│   │   ├── api.js                    ← Fetch wrapper for backend
+│   │   ├── auth.js                   ← Signup/login logic
+│   │   ├── theme.js                  ← Light/Dark toggle
+│   │   └── utils.js
+│   │
+│   └── assets/
+│       ├── images/
+│       └── icons/
 │
-│
-├── frontend_mern/
-│
-├── client/
-│   ├── public/
+├── backend/
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── ChatWindow.jsx
-│   │   │   ├── InputBox.jsx
-│   │   │   ├── LoginForm.jsx
-│   │   │   ├── Message.jsx
-│   │   │   ├── MainNavbar.jsx
-│   │   │   ├── AuthNavbar.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── SignupForm.jsx
-│   │   ├── pages/
-│   │   │   ├── ChatPage.jsx
-│   │   │   ├── LandingPage.jsx
-│   │   │   ├── LoginPage.jsx
-│   │   │   ├── ProfilePage.jsx
-│   │   │   ├── SignupPage.jsx
-│   │   ├── hooks/
-│   │   │   ├── useChat.js
-│   │   ├── layouts/
-│   │   │   ├── MainLayout.jsx
-│   │   ├── context/
-│   │   │   ├── AuthContext.jsx      # Global user authentication store
-│   │   ├── App.jsx
-│   │   ├── index.js
+│   │   ├── server.js                 ← Entry point
+│   │   │
+│   │   ├── config/                   ← All configurations
+│   │   │   ├── env.js
+│   │   │   ├── database.js           ← MongoDB connect
+│   │   │   └── redis.js              ← Redis client
+│   │   │
+│   │   ├── models/                   ← MongoDB Schemas
+│   │   │   ├── User.js
+│   │   │   ├── Chat.js
+│   │   │   └── Session.js
+│   │   │
+│   │   ├── routes/                   ← API Endpoints
+│   │   │   ├── auth.routes.js
+│   │   │   ├── chat.routes.js
+│   │   │   └── ml.routes.js
+│   │   │
+│   │   ├── controllers/              ← Request handlers
+│   │   │   ├── auth.controller.js
+│   │   │   ├── chat.controller.js
+│   │   │   └── ml.controller.js
+│   │   │
+│   │   ├── services/                 ← Logic layer
+│   │   │   ├── auth.service.js
+│   │   │   ├── chat.service.js
+│   │   │   └── ml.service.js         ← Gemini API calls
+│   │   │
+│   │   ├── gemini/                   ← ML Layer
+│   │   │   ├── geminiClient.js       ← Gemini fetch helper
+│   │   │   └── prompts/
+│   │   │        ├── system-prompt.txt
+│   │   │        ├── emotion-analysis.txt
+│   │   │        └── reflection-prompt.txt
+│   │   │
+│   │   ├── middleware/               ← Middlewares
+│   │   │   ├── auth.middleware.js
+│   │   │   ├── error.middleware.js
+│   │   │   └── rateLimiter.js
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── logger.js
+│   │   │   ├── response.js
+│   │   │   └── helpers.js
+│   │   │
+│   │   ├── cache/
+│   │   │   └── chatCache.js          ← Redis Caching
+│   │   │
+│   │   └── app.js                    ← Express App Setup
+│   │
 │   ├── package.json
-│   ├── tailwind.config.js
-│
-│
-├── server/
-│   ├── server.js                     # Entry point
-│   ├── config/db.js                  # MongoDB connection
-│   ├── controllers/
-│   │   ├── authController.js         # Login/Signup logic
-│   │   ├── chatController.js         # Chat history CRUD
-│   ├── middleware/
-│   │   ├── authMiddleware.js         # JWT validation
-│   │   ├── rateLimitFreeUsers.js     # Restrict guest users
-│   │   ├── logger.js
-│   ├── models/
-│   │   ├── User.js                   # Auth model
-│   │   ├── ChatSession.js            # Chat sessions for each user
-│   │   ├── Message.js                # Individual chat messages
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── chatRoutes.js
-│   │   ├── userRoutes.js
-│   ├── utils/
-│   │   ├── apiClient.js              # Calls FastAPI
-│   │   ├── token.js                  # JWT sign/verify
-│   ├── package.json
-│
+│   ├── .env
+│   └── README.md
 │
 ├── docs/
-│   ├── architecture_diagram.png
-│   ├── api_endpoints.md
-│   ├── emotion_model_notes.md
-│   ├── user_flow_diagram.png
-│   ├── database_schema.md
+│   ├── api-documentation.md
+│   ├── architecture.md
+│   ├── prompt-design.md
+│   └── ml-flow.md
 │
-├── .env.example
-├── README.md
+└── README.md

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Section - SoulSync</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container ram">
+    <div class="nav">
+      <a href="/Log.html">Logout</a>
+    </div>
+    <div>
+      <header><h2>Header</h2></header>
+
+      <div id="section" class="section">
+        <div class="box" id="messagesBox"></div>
+
+        <div class="chat">
+          <textarea id="input" placeholder="hi, do you want to talk...."></textarea>
+          <button id="btn" class="btn" onclick="handleSend()">SEND</button>
+        </div>
+      </div>
+      <footer><p>Footer</p></footer>
+    </div>
+  </div>
+
+<script>
+  // preserve variable names and logic from Section.jsx
+  let input = "";
+  let msg = [];
+
+  const inputEl = document.getElementById('input');
+  const messagesBox = document.getElementById('messagesBox');
+
+  inputEl.addEventListener('input', (e)=> input = e.target.value);
+
+  function addmessege(x){
+      msg = [...msg, x];
+      renderMessages();
+  }
+
+  async function save(x) {
+      const data = {
+          messege: x,
+          reply: "yes"
+      };
+      await fetch("/savemsg",{
+          method:"post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+      });
+  }
+
+  function handleSend() {
+      const x = input;
+      addmessege(x);
+      save(x);
+      input = "";
+      inputEl.value = "";
+  }
+
+  function renderMessages(){
+      messagesBox.innerHTML = "";
+      msg.forEach((m,i)=>{
+          const p = document.createElement('p');
+          p.className = 'messege';
+          p.textContent = m;
+          messagesBox.appendChild(p);
+      });
+  }
+</script>
+</body>
+</html>
