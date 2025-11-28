@@ -1,0 +1,91 @@
+SoulSyncAI/
+│
+├── backend_fastapi/
+│   ├── app/
+│   │   ├── __pycache__/
+│   │   ├── uploaded_audio/          
+│   │   ├── models/                  
+│   │   │   ├── emotion_model.py
+│   │   │   ├── classifier.pkl
+│   │   ├── utils/                    
+│   │   │   ├── audio_utils.py
+│   │   │   ├── text_utils.py
+│   │   │   ├── emotion_utils.py
+│   │   │   ├── response_generator.py
+│   │   ├── routes/                   
+│   │   │   ├── emotion_routes.py
+│   │   │   ├── support_routes.py
+│   │   │   ├── ai_routes.py          # Main LLM/Emotion Chat Endpoint
+│   │   ├── main.py
+│   │   ├── function.py               
+│   │   ├── nltk_setup.py
+│   │   └── test.py
+│   │
+│   ├── requirements.txt
+│
+│
+├── frontend_mern/
+│
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChatWindow.jsx
+│   │   │   ├── InputBox.jsx
+│   │   │   ├── LoginForm.jsx
+│   │   │   ├── Message.jsx
+│   │   │   ├── MainNavbar.jsx
+│   │   │   ├── AuthNavbar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── SignupForm.jsx
+│   │   ├── pages/
+│   │   │   ├── ChatPage.jsx
+│   │   │   ├── LandingPage.jsx
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── ProfilePage.jsx
+│   │   │   ├── SignupPage.jsx
+│   │   ├── hooks/
+│   │   │   ├── useChat.js
+│   │   ├── layouts/
+│   │   │   ├── MainLayout.jsx
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx      # Global user authentication store
+│   │   ├── App.jsx
+│   │   ├── index.js
+│   ├── package.json
+│   ├── tailwind.config.js
+│
+│
+├── server/
+│   ├── server.js                     # Entry point
+│   ├── config/db.js                  # MongoDB connection
+│   ├── controllers/
+│   │   ├── authController.js         # Login/Signup logic
+│   │   ├── chatController.js         # Chat history CRUD
+│   ├── middleware/
+│   │   ├── authMiddleware.js         # JWT validation
+│   │   ├── rateLimitFreeUsers.js     # Restrict guest users
+│   │   ├── logger.js
+│   ├── models/
+│   │   ├── User.js                   # Auth model
+│   │   ├── ChatSession.js            # Chat sessions for each user
+│   │   ├── Message.js                # Individual chat messages
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── chatRoutes.js
+│   │   ├── userRoutes.js
+│   ├── utils/
+│   │   ├── apiClient.js              # Calls FastAPI
+│   │   ├── token.js                  # JWT sign/verify
+│   ├── package.json
+│
+│
+├── docs/
+│   ├── architecture_diagram.png
+│   ├── api_endpoints.md
+│   ├── emotion_model_notes.md
+│   ├── user_flow_diagram.png
+│   ├── database_schema.md
+│
+├── .env.example
+├── README.md
