@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnmuteMind — Guest Chat</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <!-- Guest mode banner -->
+  <div class="guest-banner">
+    You are chatting as <strong>Guest</strong>. Messages are not saved.
+  </div>
+
+  <div class="chat-area" style="max-width: 900px; margin: 20px auto;">
+      <div class="conversation" id="guestConversation"></div>
+
+      <div class="composer">
+          <textarea id="guestMessage" placeholder="Type your message..."></textarea>
+          <button class="btn-primary" onclick="sendGuestMessage()">Send</button>
+      </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <script type="module">
+      import { loadComponents } from "../scripts/utils.js";
+      loadComponents();
+  </script>
+
+  <script>
+    function sendGuestMessage() {
+      const input = document.getElementById("guestMessage");
+      const conversation = document.getElementById("guestConversation");
+
+      if (!input.value.trim()) return;
+
+      conversation.innerHTML += `
+        <div class="msg user">
+          <div class="bubble bubble-user">${input.value}</div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        conversation.innerHTML += `
+          <div class="msg assistant">
+            <div class="bubble bubble-assistant">
+              You're using guest mode. I'm here to chat, but your messages won't be saved.
+            </div>
+          </div>
+        `;
+        conversation.scrollTop = conversation.scrollHeight;
+      }, 700);
+
+      input.value = "";
+      conversation.scrollTop = conversation.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
