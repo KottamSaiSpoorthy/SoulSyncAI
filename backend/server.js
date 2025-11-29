@@ -1,9 +1,0 @@
-import app from "./app.js";
-import { connectDB } from "./config/database.js";
-import { ENV } from "./config/env.js";
-
-connectDB();
-
-app.listen(ENV.PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${ENV.PORT}`);
-});
